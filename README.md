@@ -1,4 +1,3 @@
-[Readme.md](https://github.com/user-attachments/files/32933896/Readme.md)
 **Black-Box Optimisation Challenge: Capstone Project README**
 
 **Section 1: Project Overview**
@@ -13,22 +12,16 @@ Engaging in this challenge directly supports my career development by mimicking 
 
 The optimisation framework operates on a structured query-and-response feedback loop. The model interacts with the hidden functions:
 
-| **Function** | **Input array** | **Output array** |
-| --- | --- | --- | --- |
+| Function | Input array | Output array |
+| :--- | :--- | :--- |
 | Function 1 | 2D | 1D |
 | Function 2 | 2D | 1D |
-| |
-| Function 3 | 3D | 1D | |
-| |
-| |
-| Function 4 | 4D | 1D | |
-| Function 5 | 4D | 1D | |
-| |
-| Function 6 | 5D | 1D | |
-| |
-| Function 7 | 6D | 1D | |
-| |
-| Function 8 | 8D | 1D | |
+| Function 3 | 3D | 1D |
+| Function 4 | 4D | 1D |
+| Function 5 | 4D | 1D |
+| Function 6 | 5D | 1D |
+| Function 7 | 6D | 1D |
+| Function 8 | 8D | 1D |
 
 - Inputs (Query Format): The model has a vector of feature coordinates representing a specific location within the search space.
   - _Dimensions:_ Varies by function, ranging from simple low-dimensional spaces (e.g., 2-dimensional for Functions 1 and 2) to highly complex, sparse, high-dimensional terrains (e.g., Function 8).
