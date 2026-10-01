@@ -19,7 +19,16 @@
 
 There are eight synthetic black-box functions:
 
-| Function | Input array | Output array | | :--- | :--- | :--- | | Function 1 | 2D | 1D | | Function 2 | 2D | 1D | | Function 3 | 3D | 1D | | Function 4 | 4D | 1D | | Function 5 | 4D | 1D | | Function 6 | 5D | 1D | | Function 7 | 6D | 1D | | Function 8 | 8D | 1D |
+| Function | Input array | Output array |
+| :--- | :--- | :--- |
+| Function 1 | 2D | 1D |
+| Function 2 | 2D | 1D |
+| Function 3 | 3D | 1D |
+| Function 4 | 4D | 1D |
+| Function 5 | 4D | 1D |
+| Function 6 | 5D | 1D |
+| Function 7 | 6D | 1D |
+| Function 8 | 8D | 1D |
 
 - Are there any gaps, missing data, or skipped evaluations?  
   There are no missing values or null entries, as every submitted query generated a mandatory scalar feedback token. However, significant spatial distribution gaps (the Unexplored Void) exist. Because the acquisition function prioritized exploitation in later rounds after achieving major breakthroughs in Functions 4, 5, 6, and 8, the data points are highly dense and clustered tightly around early discovered peaks, leaving vast hyper-volumes of the input hypercube domain potentially unmapped.
