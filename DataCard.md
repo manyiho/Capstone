@@ -1,0 +1,55 @@
+**Datasheet: Black-Box Optimisation Capstone Challenge Dataset**
+
+1\. Motivation
+
+- Why was the dataset created?  
+  This dataset was created as an empirical, iterative record of a Black-Box Optimisation (BBO) capstone challenge. Its purpose is to track system behaviors and model feedback for multiple hidden, non-linear target functions where the underlying mathematical equations are completely hidden. The goal is to find the inputs that give the highest possible output for each function.
+- What task does it support?  
+  It directly supports the evaluation of global optimization methodologies, specifically Bayesian Optimisation (BO), Surrogate Modelling.
+- Who created the dataset and on behalf of which entity?  
+  Created by the candidate as a primary deliverable for the Machine Learning/AI Capstone Project.
+- Was there a specific gap or limitation in existing datasets that this dataset intended to fill?  
+  Yes. Unlike static, standard machine learning benchmarks (e.g., MNIST or ImageNet), this dataset captures a dynamic, closed-loop active learning trajectory. It records not just random data points, but the strategic, highly biased path an algorithm takes when navigating uncertainty under a strict sample budget.
+
+2\. Composition
+
+- What does the dataset contain?  
+  The dataset consists of structured, multi-dimensional floating-point coordinate vectors (inputs) paired with their corresponding scalar performance signals (outputs) across multiple hidden functions (e.g., Functions 1, 2, 4, 5, 6, and 8).
+- What is the size and format of the dataset?
+
+There are eight synthetic black-box functions:
+
+| Function | Input array | Output array | | :--- | :--- | :--- | | Function 1 | 2D | 1D | | Function 2 | 2D | 1D | | Function 3 | 3D | 1D | | Function 4 | 4D | 1D | | Function 5 | 4D | 1D | | Function 6 | 5D | 1D | | Function 7 | 6D | 1D | | Function 8 | 8D | 1D |
+
+- Are there any gaps, missing data, or skipped evaluations?  
+  There are no missing values or null entries, as every submitted query generated a mandatory scalar feedback token. However, significant spatial distribution gaps (the Unexplored Void) exist. Because the acquisition function prioritized exploitation in later rounds after achieving major breakthroughs in Functions 4, 5, 6, and 8, the data points are highly dense and clustered tightly around early discovered peaks, leaving vast hyper-volumes of the input hypercube domain potentially unmapped.
+
+3\. Collection Process
+
+- How were the queries generated, and what strategy was used?  
+  The dataset was collected sequentially through an evolving, multi-staged optimization pipeline:
+  - _Round 1:_ Broad baseline exploration using a random initialization of 1,000 to 10,000 virtual seeds to map initial variance.
+  - _Rounds 2–6:_ Transitioned to a Gaussian Process (GP) Matérn kernel running an internal multi-start Expected Improvement (EI) optimization.
+  - _Rounds 7–10:_ Exploitation with![](data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAQAICRAEAOw==)𝜉 down to ![](data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAQAICRAEAOw==)\=0.0001 to maximize local peaks.
+- Over what time frame was the data collected?  
+  The data was collected over a fixed, strict 10-week submission window, with evaluations occurring in discrete, delayed batch intervals.
+
+4\. Preprocessing and Uses
+
+- Have any transformations, normalization, or preprocessing steps been applied?  
+  Yes. The input data features are bound-constrained to prevent gradient explosion at the boundaries. The output target scores are tracked as absolute historical maximum as a dynamic baseline for the prior mean function.
+- What are the intended uses of this dataset?  
+  It is intended for benchmarking sequential optimization algorithms, analyzing feature sensitivity, visualizing 3D non-linear surface contours, and studying the convergence properties of deep surrogate models under conditions of extreme data scarcity.
+- What are the inappropriate uses of this dataset?  
+  This dataset is highly inappropriate for training global, general-purpose regressors or standard deep neural networks. Because the sampling strategy is heavily distorted by confirmation bias (clustering tightly near the peaks), the data does not represent a uniform or natural distribution of the target functions. Using it outside of sequential optimization contexts will lead to severe overfitting and highly unstable model predictions.
+
+5\. Distribution and Maintenance
+
+- Where is the dataset available?  
+  The dataset is fully open-source and hosted within the project's official GitHub Repository under the /data/ root directory.
+- What are the terms of use or licensing?  
+  Distributed under the standard academic MIT License, allowing free modification, reuse, and reproduction for educational and research purposes.
+- Who maintains the dataset, and how can they be contacted?  
+  Maintained directly by the repository owner (the capstone candidate). Any bugs, dataset modifications, or pipeline reproduction anomalies should be submitted formally via the repository's GitHub Issues tab.
+- What is the core assumption that consumers of this data must accept?  
+  Any researcher utilizing this dataset must accept the core assumption of landscape stationarity and local smoothness. The sampling path assumes that points close to each other yield highly correlated outputs. If a target function contains completely sharp, non-differentiable step-functions or isolated "needle-in-a-haystack" spikes, this dataset will have smoothed completely past them, rendering models trained on it blind to sudden localized discontinuities.
