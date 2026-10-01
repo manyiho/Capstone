@@ -4,7 +4,7 @@
 
 - Model Name: Bayesian Optimisation (BO)
 - Model Type: Non-Parametric Bayesian Global Optimiser
-- Version: v1.0 (Final Capstone Release)
+- Version: v1.0
 - Core Architecture: Gaussian Process (GP) using Matérn Kernel.
 
 2\. Intended Use
